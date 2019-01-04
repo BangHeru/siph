@@ -2,10 +2,12 @@
 
 {% load crispy_forms_tags %}
 
+
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-6">
-        <div class="card border-primary"  style="width: 18rem;">
+
+  <!-- <div class="row justify-content-center align-items-center" >
+    <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <div class="card border-primary"  style="width: auto; margin:0 auto; ">
             <div class="card-header bg-primary text-white text-center">
                 Log in
             </div>
@@ -15,7 +17,8 @@
                   {% csrf_token %}
                   
                   {{ form|crispy }}
-      
+
+                
                   <button type="submit" class="btn btn-primary mt-2">Log in</button>
                   
                 </form>
@@ -28,7 +31,40 @@
           </div>
 
     </div>
-  </div>
+  </div> -->
 
+
+
+  <div id="content-container" class="container p-none">
+      <div class="container col-lg-8">
+          <form id="login-form" method="post" 
+                action="{% url 'login' %}">
+              {% csrf_token %}
+              {% if form.errors %}
+                  <p class=" label label-danger">
+                      Your username and password didn't match. 
+                      Please try again.
+                  </p>
+              {% endif %}
+              <table class="table">
+                  <tr>
+                      <!-- <td><label for="id_username">Username</label></td> -->
+                      <td><input id="id_username" name="username" 
+                                 type="text" class="form-control" placeholder="username"></td>
+                  </tr>
+                  <tr>
+                      <!-- <td><label for="id_password">Password</label></td> -->
+                      <td><input id="id_password" name="password" 
+                                 type="password" class="form-control"></td>
+                  </tr>
+              </table>
+              
+
+              <input type="submit" value="Login" 
+                     class="btn btn-primary pull-right" />
+              <input type="hidden" name="next" value="{{ next }}" />
+          </form>
+      </div>
+  </div>
   
 {% endblock %}

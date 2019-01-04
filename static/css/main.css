@@ -28,3 +28,11 @@ form .alert ul {
     color: red;
 }
 
+
+  
+ .controls ul {
+    list-style-type: none;
+    display: inline;
+  }
+
+
